@@ -27,8 +27,8 @@ export async function GET(req: NextRequest) {
     })
 
     return NextResponse.json(users)
-  } catch (e: any) {
-    if (e.message === 'UNAUTHORIZED') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  } catch (e: unknown) {
+    if (e instanceof Error && e.message === 'UNAUTHORIZED') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 })
   }
 }
