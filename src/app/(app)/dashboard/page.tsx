@@ -187,7 +187,7 @@ export default function DashboardPage() {
                 <BookOpen className="w-12 h-12 mx-auto mb-3 opacity-30" />
                 <p className="text-lg font-semibold text-foreground">No loans requested yet</p>
                 <p className="text-sm mt-1 max-w-sm mx-auto">
-                  You haven't requested any items from the library yet. Browse our shared equipment catalogue to make your first request.
+                  You haven&apos;t requested any items from the library yet. Browse our shared equipment catalogue to make your first request.
                 </p>
                 <div className="mt-4">
                   <Link href="/items">
@@ -350,13 +350,13 @@ export default function DashboardPage() {
             <CardContent className="px-0 pb-0 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data.weeklyReturns}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="weekLabel" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" allowDecimals={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis dataKey="weekLabel" stroke="#64748b" />
+                  <YAxis stroke="#64748b" allowDecimals={false} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f8fafc' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#0f172a', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
                   />
-                  <Line type="monotone" dataKey="count" stroke="#3b82f6" strokeWidth={3} dot={{ r: 5 }} />
+                  <Line type="monotone" dataKey="count" stroke="#2563eb" strokeWidth={3} dot={{ r: 5 }} />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
@@ -373,11 +373,11 @@ export default function DashboardPage() {
             <CardContent className="px-0 pb-0 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={statusChartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis dataKey="name" stroke="#94a3b8" />
-                  <YAxis stroke="#94a3b8" allowDecimals={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis dataKey="name" stroke="#64748b" />
+                  <YAxis stroke="#64748b" allowDecimals={false} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f8fafc' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', color: '#0f172a', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
                   />
                   <Bar dataKey="count" radius={[6, 6, 0, 0]} />
                 </BarChart>

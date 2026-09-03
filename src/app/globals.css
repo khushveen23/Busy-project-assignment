@@ -4,6 +4,32 @@
 
 @layer base {
   :root {
+    --background: 210 20% 98%; /* #f8fafc */
+    --foreground: 222 47% 11%; /* #0f172a */
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%; /* #2563eb */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 20% 95%; /* #f1f5f9 */
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 20% 96%; /* #f1f5f9 */
+    --muted-foreground: 215 16% 47%; /* #64748b */
+    --accent: 210 20% 93%; /* #e2e8f0 */
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 20% 90%; /* #e2e8f0 */
+    --input: 214 20% 90%;
+    --ring: 221 83% 53%;
+    --radius: 0.75rem;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --overdue: 0 84% 60%;
+  }
+
+  .dark {
     --background: 222 47% 8%;
     --foreground: 210 40% 96%;
     --card: 222 47% 11%;
@@ -23,10 +49,6 @@
     --border: 217 19% 20%;
     --input: 217 19% 20%;
     --ring: 217 91% 60%;
-    --radius: 0.75rem;
-    --success: 142 71% 45%;
-    --warning: 38 92% 50%;
-    --overdue: 0 84% 60%;
   }
 }
 
@@ -41,18 +63,34 @@
 
 @layer utilities {
   .status-requested {
-    @apply bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30;
+    @apply bg-blue-50 text-blue-700 ring-1 ring-blue-500/25;
   }
   .status-issued {
-    @apply bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30;
+    @apply bg-emerald-50 text-emerald-700 ring-1 ring-emerald-500/25;
   }
   .status-overdue {
-    @apply bg-red-500/15 text-red-400 ring-1 ring-red-500/30;
+    @apply bg-red-50 text-red-700 ring-1 ring-red-500/25;
   }
   .status-returned {
-    @apply bg-slate-500/15 text-slate-400 ring-1 ring-slate-500/30;
+    @apply bg-slate-100 text-slate-700 ring-1 ring-slate-400/25;
   }
   .status-lost {
-    @apply bg-orange-500/15 text-orange-400 ring-1 ring-orange-500/30;
+    @apply bg-orange-50 text-orange-700 ring-1 ring-orange-500/25;
   }
+}
+
+/* Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.45);
 }

@@ -386,7 +386,7 @@ export default function LoanDetailPage() {
 
                         {event.note && (
                           <div className="p-2 rounded-lg bg-muted/40 text-xs text-foreground mt-1 border border-border/50 italic">
-                            "{event.note}"
+                            &quot;{event.note}&quot;
                           </div>
                         )}
                       </div>
