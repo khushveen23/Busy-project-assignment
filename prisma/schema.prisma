@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  LIBRARIAN
+  MEMBER
+}
+
+enum LoanStatus {
+  REQUESTED
+  ISSUED
+  RETURNED
+  LOST
+}
+
+enum EventType {
+  REQUESTED
+  ISSUED
+  RETURNED
+  LOST
+  NOTE
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(MEMBER)
+  createdAt    DateTime @default(now())
+
+  loans          Loan[]  @relation("BorrowerLoans")
+  issuedLoans    Loan[]  @relation("IssuedByLoans")
+  processedLoans Loan[]  @relation("ProcessedByLoans")
+  loanEvents     LoanEvent[]
+  custodianOf    CatalogueItem[] @relation("ItemCustodians")
+  alertDismissals OverdueAlertDismissal[]
+
+  @@map("users")
+}
+
+model CatalogueItem {
+  id        String   @id @default(uuid())
+  title     String
+  category  String
+  code      String   @unique
+  archived  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  loans      Loan[]
+  custodians User[]  @relation("ItemCustodians")
+
+  @@map("catalogue_items")
+}
+
+model Loan {
+  id          String     @id @default(uuid())
+  status      LoanStatus @default(REQUESTED)
+  requestedAt DateTime   @default(now())
+  issuedAt    DateTime?
+  dueDate     DateTime?
+  returnedAt  DateTime?
+  lostAt      DateTime?
+
+  item       CatalogueItem @relation(fields: [itemId], references: [id])
+  itemId     String
+
+  borrower   User   @relation("BorrowerLoans", fields: [borrowerId], references: [id])
+  borrowerId String
+
+  issuedBy   User?   @relation("IssuedByLoans", fields: [issuedById], references: [id])
+  issuedById String?
+
+  processedBy   User?   @relation("ProcessedByLoans", fields: [processedById], references: [id])
+  processedById String?
+
+  events     LoanEvent[]
+  dismissals OverdueAlertDismissal[]
+
+  @@map("loans")
+}
+
+model LoanEvent {
+  id        String    @id @default(uuid())
+  eventType EventType
+  note      String?
+  createdAt DateTime  @default(now())
+
+  loan    Loan   @relation(fields: [loanId], references: [id])
+  loanId  String
+
+  actor   User   @relation(fields: [actorId], references: [id])
+  actorId String
+
+  @@map("loan_events")
+}
+
+model OverdueAlertDismissal {
+  id          String   @id @default(uuid())
+  dismissedAt DateTime @default(now())
+
+  loan   Loan   @relation(fields: [loanId], references: [id])
+  loanId String @unique
+
+  dismissedBy   User   @relation(fields: [dismissedById], references: [id])
+  dismissedById String
+
+  @@map("overdue_alert_dismissals")
+}

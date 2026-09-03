@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 96%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 217 19% 22%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 19% 18%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 217 19% 22%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 19% 20%;
+    --input: 217 19% 20%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --overdue: 0 84% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .status-requested {
+    @apply bg-blue-500/15 text-blue-400 ring-1 ring-blue-500/30;
+  }
+  .status-issued {
+    @apply bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30;
+  }
+  .status-overdue {
+    @apply bg-red-500/15 text-red-400 ring-1 ring-red-500/30;
+  }
+  .status-returned {
+    @apply bg-slate-500/15 text-slate-400 ring-1 ring-slate-500/30;
+  }
+  .status-lost {
+    @apply bg-orange-500/15 text-orange-400 ring-1 ring-orange-500/30;
+  }
+}
